@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A9 注册页面</title>
+    <style>
+        /* 基础样式 */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100%;
+            position: relative;
+            flex-direction: column;
+            line-height: 1.6;
+            overflow-x: hidden; /* 防止横向滚动 */
+        }
+
+        .container {
+            text-align: center;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 50px 30px;
+            max-width: 450px;
+            width: 100%;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .container h1 {
+            color: #001f3f; /* 深色字体 */
+            margin-bottom: 20px;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .container p {
+            color: #555; /* 深灰色字体 */
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        .btn-register {
+            display: inline-block;
+            background-color: #FF851B;
+            color: #fff;
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+            width: 100%; /* 设置按钮为长方形 */
+        }
+
+        .btn-register:hover {
+            background-color: #FF5733;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* 新的内容部分，隐藏状态 */
+        .new-content {
+            display: none;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .new-content h2 {
+            color: #001f3f; /* 深色字体 */
+            font-size: 24px;
+        }
+
+        /* 滚动时显示内容的效果 */
+        .show-content {
+            opacity: 1 !important;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: #001f3f;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* 各部分内容 */
+        section {
+            width: 100%;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .about-us, .gameplay, .slot, .sports {
+            margin-top: 50px;
+            text-align: center;
+            background: #f4f4f4;
+            border-radius: 10px;
+        }
+
+        .about-us h2, .gameplay h2, .slot h2, .sports h2 {
+            font-size: 26px;
+            color: #001f3f;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .about-us p, .gameplay p, .slot p, .sports p {
+            font-size: 18px;
+            color: #555;
+            margin-top: 15px;
+            line-height: 1.8;
+        }
+
+        ul {
+            text-align: left;
+            margin-left: 30px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        ul li {
+            margin-bottom: 12px;
+        }
+
+        /* 新增部分：老虎机和体育游戏 */
+        .slot .game-container, .sports .game-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .slot .game, .sports .game {
+            width: 200px;
+            height: 200px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slot .game img, .sports .game img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 联系我们部分 */
+        .contact-us {
+            background: #001f3f;
+            color: #fff;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .contact-us a {
+            margin: 0 20px;
+            display: inline-block;
+        }
+
+        .contact-us img {
+            width: 50px;
+            height: 50px;
+            transition: transform 0.3s;
+        }
+
+        .contact-us img:hover {
+            transform: scale(1.2);
+        }
+
+        /* 响应式布局 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 15px;
+            }
+
+            .navbar a {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .slot .game, .sports .game {
+                width: 150px;
+                height: 150px;
+            }
+
+            .about-us, .gameplay, .slot, .sports {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="navbar">
+        <a href="#">首页</a>
+        <a href="#about-a9">关于 A9</a>
+        <a href="#gameplay">游戏介绍</a>
+        <a href="#slot">老虎机</a>
+        <a href="#sports">体育游戏</a>
+        <a href="#contact-us">联系我们</a>
+    </div>
+
+<!-- 注册与介绍布局 -->
+<section class="register-about" style="display: flex; justify-content: center; align-items: flex-start; gap: 20px; margin: 40px auto; max-width: 1200px; background: #f0f4f8; border-radius: 8px; padding: 30px;">
+    <!-- 左侧：立刻注册 -->
+    <div class="left-register" style="flex: 1; text-align: center; background: #ffffff; padding: 30px; border-radius: 8px; color: #001f3f;">
+        <!-- A9 Logo -->
+        <div class="logo-container" style="margin-bottom: 20px;">
+            <img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_300,w_300,f_auto,q_auto/17856631/335316_398614.png" 
+                 alt="A9 Logo" 
+                 style="width: 120px; height: auto;">
+        </div>
+        <h2 style="font-size: 28px; margin-bottom: 20px;">立刻注册</h2>
+        <p style="font-size: 16px; margin-bottom: 30px;">立即注册，开启您的娱乐之旅！</p>
+        <!-- 注册按钮链接 -->
+        <a href="https://example.com/register" target="_blank" class="btn-register" style="background: #001f3f; color: #ffffff; padding: 12px 25px; font-size: 18px; border-radius: 5px; text-decoration: none; display: inline-block; width: 80%; text-align: center;">注册账户</a>
+    </div>
+
+    <!-- 中间：分隔线（可选） -->
+    <div style="width: 2px; background: #ccc;"></div>
+
+    <!-- 右侧：关于 A9娱乐平台 -->
+    <div class="right-about" style="flex: 2; background: #fff; padding: 30px; border-radius: 8px; color: #333;">
+        <h2 style="font-size: 26px; color: #001f3f; margin-bottom: 15px;">关于 A9娱乐平台</h2>
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            在 A9 娱乐平台，您可以享受快速充值和便捷的出款服务。我们提供丰富的娱乐内容，确保每一位玩家都能体验到顶级的游戏体验。
+        </p>
+        <ul style="font-size: 16px; line-height: 1.8;">
+            <li><strong>出款快速：</strong>无论是小额还是大额出款，我们保证快速、安全地处理每一笔交易。</li>
+            <li><strong>充值快捷：</strong>平台支持多种支付方式，充值过程简单、快捷，让您随时随地轻松享受游戏。</li>
+            <li><strong>丰富的游戏内容：</strong>我们为玩家提供了众多游戏选择，确保每位玩家都能找到自己喜爱的游戏。</li>
+        </ul>
+    </div>
+</section>
+
+    <!-- 游戏介绍 -->
+    <section id="gameplay" class="gameplay">
+        <h2>游戏介绍</h2>
+        <p>我们的平台提供了多种好玩的游戏，不仅玩法丰富，而且充满挑战。每一款游戏都经过精心设计，保证带给玩家无与伦比的娱乐体验。</p>
+        <ul>
+            <li><strong>刺激的竞技游戏：</strong>在我们的竞技游戏中，玩家可以与全球的对手一较高下，享受紧张刺激的对战体验。</li>
+            <li><strong>休闲类游戏：</strong>如果您喜欢放松的娱乐方式，我们的休闲类游戏是您的最佳选择，轻松愉悦的玩法让您释放压力。</li>
+            <li><strong>实时多人游戏：</strong>与朋友们一起进行实时对战，享受多人互动的乐趣。</li>
+        </ul>
+    </section>
+
+    <!-- 老虎机 -->
+    <section id="slot" class="slot">
+        <h2>老虎机游戏</h2>
+        <p>我们的老虎机游戏画面精美，玩法简单。您只需转动轮盘，享受刺激的中奖体验。</p>
+        <div class="game-container">
+            <div class="game">
+                <img src="https://via.placeholder.com/200x200.png?text=Slot+Game+1" alt="Slot Game 1">
+            </div>
+            <div class="game">
+                <img src="https://via.placeholder.com/200x200.png?text=Slot+Game+2" alt="Slot Game 2">
+            </div>
+            <div class="game">
+                <img src="https://via.placeholder.com/200x200.png?text=Slot+Game+3" alt="Slot Game 3">
+            </div>
+        </div>
+    </section>
+
+    <!-- 体育游戏 -->
+    <section id="sports" class="sports">
+        <h2>体育游戏</h2>
+        <p>在我们的体育游戏中，您可以享受真实的比赛体验，挑战自己，争取胜利。</p>
+        <div class="game-container">
+            <div class="game">
+                <img src="https://via.placeholder.com/200x200.png?text=Sports+Game+1" alt="Sports Game 1">
+            </div>
+            <div class="game">
+                <img src="https://via.placeholder.com/200x200.png?text=Sports+Game+2" alt="Sports Game 2">
+            </div>
+            <div class="game">
+                <img src="https://via.placeholder.com/200x200.png?text=Sports+Game+3" alt="Sports Game 3">
+            </div>
+        </div>
+    </section>
+
+        <!-- 真人游戏 -->
+        <section id="sports" class="sports">
+            <h2>真人游戏</h2>
+            <p>在我们的真人游戏中，您可以与真人荷官实时互动，享受沉浸式的游戏体验。</p>
+            <div class="game-container">
+                <div class="game">
+                    <img src="https://via.placeholder.com/200x200.png?text=Sports+Game+1" alt="Sports Game 1">
+                </div>
+                <div class="game">
+                    <img src="https://via.placeholder.com/200x200.png?text=Sports+Game+2" alt="Sports Game 2">
+                </div>
+                <div class="game">
+                    <img src="https://via.placeholder.com/200x200.png?text=Sports+Game+3" alt="Sports Game 3">
+                </div>
+            </div>
+        </section>
+
+    <!-- 联系我们部分 -->
+    <section id="contact-us" class="contact-us">
+        <h2>联系我们</h2>
+        <p>如果您有任何问题或建议，请通过以下方式联系我们，我们会尽快回复您！</p>
+        
+        <a href="https://wa.me/yourwhatsapplink" target="_blank" aria-label="WhatsApp">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/whatsapp.svg" alt="WhatsApp Logo">
+        </a>
+        <a href="https://facebook.com/yourfacebooklink" target="_blank" aria-label="Facebook">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/facebook.svg" alt="Facebook Logo">
+        </a>
+        <a href="https://t.me/yourtelegramlink" target="_blank" aria-label="Telegram">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/telegram.svg" alt="Telegram Logo">
+        </a>
+    </section>
+
+    <div class="footer">
+        <p>&copy; 2025 A9 Entertainment. All rights reserved.</p>
+    </div>
+
+    <script>
+        // 滚动显示内容
+        window.addEventListener('scroll', function () {
+            var elements = document.querySelectorAll('.new-content');
+            elements.forEach(function (element) {
+                if (isInViewport(element)) {
+                    element.classList.add('show-content');
+                }
+            });
+        });
+
+        function isInViewport(element) {
+            var rect = element.getBoundingClientRect();
+            return rect.top >= 0 && rect.bottom <= window.innerHeight;
+        }
+    </script>
+</body>
+</html>
